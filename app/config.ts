@@ -1,21 +1,26 @@
-export const OFFICIAL_DRIVE_URL = "https://drive.google.com/drive/u/1/folders/1rWEQBakZD1aegJ82wpvgeIXebP-tSqrz";
+export const LATEST_APK_URL = "https://drive.usercontent.google.com/download?id=1zxXHPESBWz8sIZ_C2lQoohmOWUb6GjFa&export=download&confirm=t";
+export const VERSION_1_0_APK_URL = "https://drive.usercontent.google.com/download?id=1zmbl8y5pujqGfEDW7bTjKPTnDKd1FY2a&export=download&confirm=t";
 
-// The production hostname is supplied at build time so the QR code never uses a local or preview URL.
+// When a production hostname is configured, the QR code uses its stable /download route.
+// Until then, it safely encodes the latest official APK URL—never a local or preview address.
 export const appConfig = {
   appName: "Fitness Buddy",
   tagline: "Personalized cardio guidance that adapts with your progress.",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "",
-  apkAssetUrl: process.env.APK_ASSET_URL ?? OFFICIAL_DRIVE_URL,
-  buildLabel: "Debug prototype build",
-  versionName: "Not embedded in supplied artifact",
-  releaseDate: "Not specified for supplied artifact",
-  apkFilename: "app-debug.apk",
-  apkFileSize: "35.8 MB",
-  apkSha256: "67f7cef1ec71daed46557eb87cb626dae6de83b350f280ee7e12ef0356dfed0c",
+  apkAssetUrl: LATEST_APK_URL,
+  buildLabel: "Version 1.1",
+  versionName: "1.1",
+  releaseDate: "Current release",
+  apkFilename: "Fitness Buddy Version 1.1 APK",
+  apkFileSize: "",
+  apkSha256: "",
   releaseNotes: [
-    "Current downloadable artifact is a debug prototype build.",
-    "Includes the Fitness Buddy mobile client and its configured services.",
-    "Use the official download route so future release files can be changed without changing the link.",
+    "Version 1.1 is now the current official download.",
+    "The Download APK button and QR code lead to the current version.",
+    "Version 1.0 remains available as an older download for users who need it.",
+  ],
+  previousReleases: [
+    { version: "1.0", downloadUrl: VERSION_1_0_APK_URL },
   ],
   team: [
     { name: "Aaron Lance Bañares Cabueñas", initials: "AC", role: "Researcher and Developer" },

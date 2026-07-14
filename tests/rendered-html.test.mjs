@@ -25,7 +25,9 @@ test("includes the stable download route and public pages", async () => {
     readFile(new URL("../app/site-client.tsx", import.meta.url), "utf8"),
   ]);
   assert.match(route, /NextResponse\.redirect/);
-  assert.match(config, /OFFICIAL_DRIVE_URL/);
+  assert.match(config, /LATEST_APK_URL/);
+  assert.match(config, /VERSION_1_0_APK_URL/);
+  assert.match(config, /versionName:\s*"1\.1"/);
   assert.match(privacy, /Privacy policy/);
   assert.match(privacy, /Installation guide/);
 });

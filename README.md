@@ -14,19 +14,19 @@ Official public information and APK download website for Fitness Buddy. The proj
 1. Install dependencies with `npm install`.
 2. Copy `.env.example` to `.env.local`.
 3. Set `NEXT_PUBLIC_SITE_URL` to the final production website URL.
-4. Set `APK_ASSET_URL` to the current official APK URL. The supplied Google Drive folder URL is the initial value.
+4. Set `NEXT_PUBLIC_SITE_URL` only after your final production URL is known. The latest APK URL is maintained in `app/config.ts`.
 5. Run `npm run dev`.
 
 ## Download architecture
 
-All download buttons use `/download`. The route redirects to `APK_ASSET_URL`, so updating the APK location does not change the public link or invalidate the QR code. The QR code is created only when `NEXT_PUBLIC_SITE_URL` is configured, ensuring it never contains a local or preview address.
+All latest-version download buttons use `/download`. The route redirects to the Version 1.1 URL stored in `app/config.ts`, so the public link remains stable when the release is updated. When `NEXT_PUBLIC_SITE_URL` is configured, the QR code encodes that stable route; otherwise it encodes the official Version 1.1 APK URL directly.
 
 ## Updating the APK
 
 1. Upload or replace the approved APK in the official file location.
-2. Update `APK_ASSET_URL` in the hosting environment.
-3. In `app/config.ts`, update the build label, filename, file size, SHA-256 checksum, release date, and structured release notes.
-4. Recalculate the size from the exact file and calculate a new SHA-256 checksum.
+2. In `app/config.ts`, update the latest APK URL, build label, release metadata, and structured release notes.
+3. Keep older versions in the structured previous-releases list when they should remain available.
+4. Recalculate the size and SHA-256 checksum when you want to display them.
 5. Redeploy. The `/download` route and its QR code remain stable.
 
 ## Deploying to Vercel
@@ -34,7 +34,7 @@ All download buttons use `/download`. The route redirects to `APK_ASSET_URL`, so
 1. Push this folder to the connected Git repository.
 2. Import the repository into Vercel and confirm the detected Next.js framework.
 3. Leave **Output Directory** empty so Vercel uses the standard Next.js `.next` output automatically.
-4. Add `NEXT_PUBLIC_SITE_URL` with the final production URL and `APK_ASSET_URL` with the official APK destination.
+4. Add `NEXT_PUBLIC_SITE_URL` with the final production URL.
 5. Deploy a preview, then configure the production domain.
 6. Update `NEXT_PUBLIC_SITE_URL` to that final domain and redeploy.
 7. Test `/download` and scan the production QR code only after the production URL is configured.
@@ -47,4 +47,4 @@ Run `npm run build` for the production build and `npm test` for the rendered sit
 
 ## Current release facts
 
-The supplied artifact is `app-debug.apk` (35.8 MB) with SHA-256 `67f7cef1ec71daed46557eb87cb626dae6de83b350f280ee7e12ef0356dfed0c`. It is labeled as a debug prototype build. No verified version name or release date was embedded with the supplied artifact.
+The current official release is Fitness Buddy Version 1.1. The stable `/download` route points to its Google Drive download URL. Version 1.0 remains listed as an older direct download on the Release Notes page and does not have a QR code.
