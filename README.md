@@ -33,10 +33,13 @@ All download buttons use `/download`. The route redirects to `APK_ASSET_URL`, so
 
 1. Push this folder to the connected Git repository.
 2. Import the repository into Vercel and confirm the detected Next.js framework.
-3. Add `NEXT_PUBLIC_SITE_URL` with the final production URL and `APK_ASSET_URL` with the official APK destination.
-4. Deploy a preview, then configure the production domain.
-5. Update `NEXT_PUBLIC_SITE_URL` to that final domain and redeploy.
-6. Test `/download` and scan the production QR code only after the production URL is configured.
+3. Leave **Output Directory** empty so Vercel uses the standard Next.js `.next` output automatically.
+4. Add `NEXT_PUBLIC_SITE_URL` with the final production URL and `APK_ASSET_URL` with the official APK destination.
+5. Deploy a preview, then configure the production domain.
+6. Update `NEXT_PUBLIC_SITE_URL` to that final domain and redeploy.
+7. Test `/download` and scan the production QR code only after the production URL is configured.
+
+The default `dev`, `build`, and `start` scripts target standard Next.js and Vercel. The `dev:sites`, `build:sites`, and `start:sites` scripts preserve the separate vinext/Cloudflare Sites workflow.
 
 ## Validation
 
