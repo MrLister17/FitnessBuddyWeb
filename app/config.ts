@@ -1,5 +1,6 @@
 export const OFFICIAL_DRIVE_URL = "https://drive.google.com/drive/u/1/folders/1rWEQBakZD1aegJ82wpvgeIXebP-tSqrz";
 
+// The production hostname is supplied at build time so the QR code never uses a local or preview URL.
 export const appConfig = {
   appName: "Fitness Buddy",
   tagline: "Personalized cardio guidance that adapts with your progress.",
